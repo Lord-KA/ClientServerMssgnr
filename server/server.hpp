@@ -104,6 +104,8 @@ namespace g {
             std::memcpy(package + sizeof(msg), text.c_str(), text.size());
 
             rcvr->Send(package, sizeof(msg) + text.size());
+            delete[] package;
+
             // Allow incomming messages.
             this->clients[rcvr].state = Client::State::allowedMsg;
         }
