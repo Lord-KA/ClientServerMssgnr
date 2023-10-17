@@ -37,7 +37,6 @@ namespace g {
                 try {
                     std::string command;
                     std::cin >> command;
-                    // XXX TODO broadcast.
                     if (command == "list") {
                         int count = 0;
                         for (auto [socket, status]: server.listClients()) {
@@ -50,6 +49,12 @@ namespace g {
                         std::getline(std::cin, text);
                         std::cerr << text << std::endl;
                         server.send(server.getClient(to), text);
+                    } else if (command == "broadcast") {
+                        std::string text;
+                        std::getline(std::cin, text);
+                        for (auto [socket, _] : server.listClients()) {
+                            server.send(socket, text);
+                        }
                     } else {
                         std::cout << "Unknown command!\n";
                     }
