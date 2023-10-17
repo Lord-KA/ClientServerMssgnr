@@ -39,7 +39,7 @@ if(NOT googletest_POPULATED)
   add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
-# add_executable(example_server ./example-server.cpp)
+add_executable(example_server ./server/app.cpp)
 add_executable(example_client ./client/app.cpp)
 
 # target_link_libraries()

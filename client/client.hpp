@@ -36,7 +36,8 @@ namespace g {
                     if (not this->msgReceiveHook)
                         break;
 
-                    const char *package = message + msg->packageSize;
+                    const char *package = message + sizeof(struct MessageStructure);
+                    std::cerr << msg->packageSize << std::endl;
                     msgReceiveHook(package, msg->packageSize);
 
                     struct MessageStructure ans;
